@@ -7,5 +7,5 @@ name_allocator.py ---> check the name manualy + save background images ----> bad
 Importatn notes: 
 1) Store background images in the print_job folder when the name sheet is revisited. 
 2) Details of how to use specific code are shown in the header of each code page. 
-
+3) Example background images are inculded in this repository.
 
