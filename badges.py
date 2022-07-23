@@ -16,6 +16,8 @@ Formats and parameters of the badges can be modified in parameters region, watch
 ---ver. 1.0 Dsh 19/07/22
     The output html contains 10 badges on a single A4 sheet.
 
+---ver. 2.0 Dsh 23/07/22
+    'Revisit' name can now be added to the end of "English" column
 
 
 """
@@ -72,8 +74,16 @@ for i in range(len(df['English'])) :
     if type(df['English'][i]) is str:
         en.append(df['English'][i]) 
 
-name_data = zh + en
+number = len(en)
 
+for i in range(len(df['Revisit'])) :
+    if type(df['Revisit'][i]) is str:
+        en.append(df['Revisit'][i]) 
+        df['English'][number] = df['Revisit'][i]
+        number += 1
+
+name_data = zh + en
+df.to_excel(file)
 
 # Html algorithm and design
 head = '''
