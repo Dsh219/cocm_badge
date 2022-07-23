@@ -16,6 +16,8 @@ Path has to be in a certain form: (remember the 'r' in the front)
 
 ---ver. 1.0 Dsh 19/07/22
     The output excel contains three more columns, which are '中文', 'Engligh' and 'revisit'.
+---ver. 2.0 Dsh 23/07/22
+    The headers creater has been modified to be adaptive + path defined by 'new' is adaptive now.
 """
 
 #%%
@@ -23,7 +25,7 @@ import pandas as pd
 import langid
 from openpyxl import load_workbook
 import os
-
+import string
 ########################### Useful functions##################################
 def space_counter(name):
     '''
@@ -66,7 +68,7 @@ if not os.path.exists(newpath):
     os.makedirs(newpath)
     
 # Save a copy to a different file
-new = r'C:\Users\work\Desktop\print_job\name_data.xlsx'
+new = r'%s\name_data.xlsx'%(newpath)
     
 ########################  Preparing the dataset  #############################
 
@@ -83,10 +85,14 @@ re=[]
 workbook = load_workbook(filename=file)
 sheet = workbook.active
 
-# Modify the desired cell
-sheet["C1"] = "中文"
-sheet["D1"] = "English"
-sheet["E1"] = "Revisit"
+# Adding new headers
+index_zh = len(df0.columns)+1
+index_en = index_zh + 1
+index_re = index_en + 1
+
+sheet["%s1"%(string.ascii_uppercase[index_zh])] = "中文"
+sheet["%s1"%(string.ascii_uppercase[index_en])] = "English"
+sheet["%s1"%(string.ascii_uppercase[index_re])] = "Revisit"
 
 # Save the change in pandas
 workbook.save(new)
@@ -105,7 +111,7 @@ for i in range(len(df0[col_name])):
     #print(langid.classify(i)[0])
     if langid.classify(a)[0] == 'zh':
         zh.append(a)
-        df[df.columns[2]][num_zh] = a
+        df[df.columns[index_zh]][num_zh] = a
         num_zh += 1
         #print(i,num)
     else :
@@ -113,17 +119,17 @@ for i in range(len(df0[col_name])):
             fullname = a.split(' ')
             if len(fullname[0]) < 11 :
                 en.append(fullname[0])
-                df[df.columns[3]][num_en] = fullname[0]
+                df[df.columns[index_en]][num_en] = fullname[0]
                 num_en += 1
                 #print(num_en,fullname)
             else:
                 re.append(a)
-                df[df.columns[4]][num_re] = a
+                df[df.columns[index_re]][num_re] = a
                 num_re+=1
                 #print('long name') 
         else:
            re.append(a)
-           df[df.columns[4]][num_re] = a
+           df[df.columns[index_re]][num_re] = a
            num_re+=1
            
 # Test, Save and Warning           
