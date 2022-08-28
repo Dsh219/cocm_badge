@@ -22,7 +22,6 @@ Formats and parameters of the badges can be modified in parameters region, watch
 
 """
 
-#%%
 import pandas as pd
 import os
 
@@ -31,12 +30,12 @@ import os
 #####################  Parameters can be modified  ###########################
  
 # Badge background and dimensions in cm !!!!
-badge_bg = "'page-0.png'"
+badge_bg = "'badge_bg.png'"
 badge_width = 8.71
 badge_height = 5.51 
 
 # Name box background and dimensions in cm !!!!!!
-name_bg = "'Picture1.png'"
+name_bg = "'name_bg.png'"
 name_width = 7.8
 name_height = 3
 
@@ -116,10 +115,10 @@ head = '''
        .badge{
            background-image: url(%s); 
            background-repeat: no-repeat;
-           background-size: %.2fcm %.2fcm;
+           background-size: %fcm %fcm;
            /*background-color: yellow;*/
-           width: %.2fcm;
-           height: %.2fcm;
+           width: %fcm;
+           height: %fcm;
            border-style: solid;
            border-color: transparent;
            border-width: 0.5px;
@@ -128,10 +127,10 @@ head = '''
        .name{
            background-image: url(%s);
            background-repeat: no-repeat;
-           background-size: %.2fcm %.2fcm;
-           width:%.2fcm;
-           height: %.2fcm;
-           margin-top: %.2fcm;
+           background-size: %fcm %fcm;
+           width:%fcm;
+           height: %fcm;
+           margin-top: %fcm;
            margin-left: auto;
            margin-right: auto;
        }
