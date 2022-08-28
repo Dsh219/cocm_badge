@@ -1,6 +1,6 @@
 # cocm_small_camp badges making
 
-In order to generate the pdf for printing badges, need to run name_allocator.py first and then, run the badges.py, the badge.html will be avaliable in the print_job folder on Desktop, badges can be printed from badge.html file.
+In order to generate the pdf for printing badges, need to run name_allocator.py first and then, run the badges_rectangle.py, the badge.html will be avaliable in the print_job folder on Desktop, badges can be printed from badge.html file.
 
 name_allocator.py ---> check the name manualy + save background images ----> badges.py ----> badge.html ------> print 
 
